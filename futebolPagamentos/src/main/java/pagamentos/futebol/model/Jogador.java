@@ -1,11 +1,23 @@
 package pagamentos.futebol.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 
 /*
     Entidade de jogadores
@@ -17,8 +29,8 @@ public class Jogador {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_jogador")
-    private Long codJogador;
+    @Column(name = "codjogador")
+    private Long codjogador;
 
     @NotBlank(message = "Nome é obrigatório")
     @Size(max = 60, message = "Nome deve ter no máximo 60 caracteres")
@@ -51,11 +63,11 @@ public class Jogador {
 
     // Getters e Setters
     public Long getCodJogador() {
-        return codJogador;
+        return codjogador;
     }
 
-    public void setCodJogador(Long codJogador) {
-        this.codJogador = codJogador;
+    public void setCodJogador(Long codjogador) {
+        this.codjogador = codjogador;
     }
 
     public String getNome() {

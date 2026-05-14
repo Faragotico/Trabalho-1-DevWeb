@@ -60,7 +60,7 @@ public class JogadorController {
 
     // Buscar por id
     @GetMapping("/{id}")
-    public ResponseEntity<Jogador> buscarPorId(@PathVariable long id){
+    public ResponseEntity<Jogador> buscarPorId(@PathVariable Long id){
         try{
             Optional<Jogador> data = jogadorRepository.findById(id);
 
@@ -87,7 +87,7 @@ public class JogadorController {
 
     // Atualizar jogador por id
     @PutMapping("/{id}")
-    public ResponseEntity<Jogador> atualizarJogador(@PathVariable long id, @Valid @RequestBody Jogador jogador){
+    public ResponseEntity<Jogador> atualizarJogador(@PathVariable Long id, @Valid @RequestBody Jogador jogador){
         Optional<Jogador> data = jogadorRepository.findById(id);
         if(data.isPresent()){
             Jogador jogador_novo = data.get();
@@ -101,7 +101,7 @@ public class JogadorController {
 
     // Remover jogador por id
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable long id){
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
         try{
             jogadorRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

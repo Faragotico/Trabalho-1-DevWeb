@@ -27,8 +27,8 @@ public class Pagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_pagamento")
-    private Long codPagamento;
+    @Column(name = "codpagamento")
+    private Long codpagamento;
 
     @NotNull(message = "Ano é obrigatório")
     @Min(value = 2000, message = "Ano deve ser maior ou igual a 2000")
@@ -48,7 +48,7 @@ public class Pagamento {
     private BigDecimal valor;
 
     // Relacionamento many to one
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_jogador", nullable = false)
     @JsonBackReference
     private Jogador jogador;
@@ -66,11 +66,11 @@ public class Pagamento {
 
     // Getters e Setters
     public Long getCodPagamento() {
-        return codPagamento;
+        return codpagamento;
     }
 
-    public void setCodPagamento(Long codPagamento) {
-        this.codPagamento = codPagamento;
+    public void setCodPagamento(Long codpagamento) {
+        this.codpagamento = codpagamento;
     }
 
     public short getAno() {

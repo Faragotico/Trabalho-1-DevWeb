@@ -2,7 +2,6 @@ package pagamentos.futebol.repository;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,8 +14,6 @@ import pagamentos.futebol.model.Pagamento;
 @Repository
 public interface PagamentoRepository extends JpaRepository<Pagamento, Long>{
     
-    @Override
-    Optional<Pagamento> findById(Long id);
     List<Pagamento> findByAno(Short ano);
     List<Pagamento> findByMes(Byte mes);
     List<Pagamento> findByValor(BigDecimal valor);

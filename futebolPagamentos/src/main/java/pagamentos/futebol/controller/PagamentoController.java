@@ -37,7 +37,7 @@ public class PagamentoController {
     private JogadorRepository jogadorRepository;
 
     // Listar pagamentos por ano, mes, valor ou todos eles
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Pagamento>> listarTodos(@RequestParam(required = false) Short ano, @RequestParam(required = false) Byte mes,
                                                         @RequestParam(required = false) BigDecimal valor){
 
@@ -65,7 +65,7 @@ public class PagamentoController {
 
     // Buscar pagamento por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Pagamento> buscarPorId(@PathVariable long id){
+    public ResponseEntity<Pagamento> buscarPorId(@PathVariable Long id){
          try{
             Optional<Pagamento> data = pagamentoRepository.findById(id);
 
@@ -73,7 +73,10 @@ public class PagamentoController {
                 Pagamento pagamento = data.get();
                 return new ResponseEntity<>(pagamento, HttpStatus.OK);
             }
-            else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else{
+                System.out.println("O Java tentou buscar o ID: " + id + " mas o banco retornou vazio.");
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
